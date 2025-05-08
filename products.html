@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ARBUZ.Tech</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo" onclick="location.href='main.html'">
+        <img src="images/image.png" alt="Логотип" />
+        <h1>ARBUZ.Tech</h1>
+      </div>
+      <div class="icons">
+        <img src="images/751463 1.png" alt="Поиск" />
+        <span>Поиск</span>
+        <img src="images/Moon.png" alt="Тема" />
+        <div onclick="location.href='shopping_cart.html'">
+          <img src="images/image 9.png" alt="Корзина" />
+        </div>
+      </div>
+    </header>
+
+    <div class="search-bar">
+      <label for="search">Поиск:</label>
+      <input type="text" id="search" placeholder="Введите название..." />
+    </div>
+
+    <div class="container">
+      <aside class="filters">
+        <label>Раздел магазина:</label>
+        <select>
+          <option>выбрать</option>
+        </select>
+
+        <label><input type="checkbox" checked /> Только товары в наличии</label>
+        <label><input type="checkbox" checked /> Хорошие отзывы</label>
+
+        <div class="price-range">
+          <p>Ценовой диапазон: 0–400000 RUB</p>
+          <input type="range" min="0" max="400000" />
+        </div>
+
+        <button class="apply">Применить</button>
+        <button class="reset">Сбросить всё</button>
+      </aside>
+
+      <main class="products">
+        <div class="product">
+          <img src="gpu.png" alt="Product" />
+          <div class="info">
+            <h3>НАИМЕНОВАНИЕ - 12345 РУБ</h3>
+            <p>характеристики характеристики характеристики...</p>
+          </div>
+        </div>
+        <!-- Повтор блоков product -->
+      </main>
+    </div>
+  </body>
+</html>

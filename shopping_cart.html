@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARBUZ.Tech — Главная</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo" onclick="location.href='main.html'">
+        <img src="images/image.png" alt="Логотип" />
+        <h1>ARBUZ.Tech</h1>
+      </div>
+      <div class="icons">
+        <img src="images/751463 1.png" alt="Поиск" />
+        <span>Поиск</span>
+        <img src="images/Moon.png" alt="Тема" />
+        <div onclick="location.href='shopping_cart.html'">
+          <img src="images/image 9.png" alt="Корзина" />
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      <div class="product-list" id="productList"></div>
+
+      <div class="sidebar">
+        <div class="checkout">
+          <button onclick="checkout()">Перейти к оплате</button>
+          <p>Итог: <span id="total">0₽</span></p>
+          <p>Скидка: <span id="discount">0₽</span></p>
+          <hr />
+          <p>Есть промокод?</p>
+          <div class="promo">
+            <input type="text" id="promoInput" placeholder="ввести промокод" />
+            <button onclick="applyPromo()">Применить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
