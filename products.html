@@ -21,40 +21,241 @@
       </div>
     </header>
 
-    <div class="search-bar">
-      <label for="search">Поиск:</label>
-      <input type="text" id="search" placeholder="Введите название..." />
-    </div>
-
     <div class="container">
       <aside class="filters">
-        <label>Раздел магазина:</label>
-        <select>
-          <option>выбрать</option>
-        </select>
-
-        <label><input type="checkbox" checked /> Только товары в наличии</label>
-        <label><input type="checkbox" checked /> Хорошие отзывы</label>
-
-        <div class="price-range">
-          <p>Ценовой диапазон: 0–400000 RUB</p>
-          <input type="range" min="0" max="400000" />
+        <div class="filter-header">
+          <h2>Фильтры</h2>
         </div>
 
-        <button class="apply">Применить</button>
-        <button class="reset">Сбросить всё</button>
+        <div class="filter-section">
+          <div class="filter-title">Цена</div>
+          <div class="price-range">
+            <input
+              type="number"
+              class="price-input"
+              id="min-price"
+              placeholder="От"
+              min="0"
+              max="10000"
+            />
+            <input
+              type="number"
+              class="price-input"
+              id="max-price"
+              placeholder="До"
+              min="0"
+              max="10000"
+            />
+          </div>
+          <div class="price-slider">
+            <div class="progress"></div>
+            <input
+              type="range"
+              id="range-min"
+              min="0"
+              max="10000"
+              value="0"
+              step="100"
+            />
+            <input
+              type="range"
+              id="range-max"
+              min="0"
+              max="10000"
+              value="10000"
+              step="100"
+            />
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Категории</div>
+          <div class="filter-options">
+            <div class="option">
+              <input
+                type="checkbox"
+                id="category1"
+                name="category"
+                value="Электроника"
+              />
+              <label for="category1">Электроника</label>
+            </div>
+            <div class="option">
+              <input
+                type="checkbox"
+                id="category2"
+                name="category"
+                value="Одежда"
+              />
+              <label for="category2">Одежда</label>
+            </div>
+            <div class="option">
+              <input
+                type="checkbox"
+                id="category3"
+                name="category"
+                value="Дом"
+              />
+              <label for="category3">Дом</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Рейтинг</div>
+          <div class="filter-options">
+            <div class="option">
+              <input type="checkbox" id="rating5" name="rating" value="5" />
+              <label for="rating5">★★★★★ (5)</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="rating4" name="rating" value="4" />
+              <label for="rating4">★★★★☆ (4+)</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="rating3" name="rating" value="3" />
+              <label for="rating3">★★★☆☆ (3+)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">Доставка</div>
+          <div class="filter-options">
+            <div class="option">
+              <input
+                type="checkbox"
+                id="delivery1"
+                name="delivery"
+                value="today"
+              />
+              <label for="delivery1">Сегодня</label>
+            </div>
+            <div class="option">
+              <input
+                type="checkbox"
+                id="delivery2"
+                name="delivery"
+                value="free"
+              />
+              <label for="delivery2">Бесплатная</label>
+            </div>
+            <div class="option">
+              <input
+                type="checkbox"
+                id="delivery3"
+                name="delivery"
+                value="pickup"
+              />
+              <label for="delivery3">Самовывоз</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="apply-filters">Применить фильтры</button>
+        <button class="reset-filters">Сбросить все</button>
+        <div class="error-message"></div>
       </aside>
 
       <main class="products">
-        <div class="product">
-          <img src="gpu.png" alt="Product" />
-          <div class="info">
-            <h3>НАИМЕНОВАНИЕ - 12345 РУБ</h3>
-            <p>характеристики характеристики характеристики...</p>
+        <div
+          class="product-card"
+          data-category="Электроника"
+          data-rating="5"
+          data-price="5000"
+          data-delivery="today free"
+        >
+          <div class="product-image">📦</div>
+          <div class="product-info">
+            <div class="product-title">Предмет 1</div>
+            <div class="product-price">5 000 ₽</div>
+            <div class="product-rating">★★★★★ (5.0)</div>
+            <div class="product-delivery">Доставка сегодня · Бесплатно</div>
           </div>
         </div>
-        <!-- Повтор блоков product -->
+
+        <div
+          class="product-card"
+          data-category="Одежда"
+          data-rating="4"
+          data-price="12500"
+          data-delivery="free"
+        >
+          <div class="product-image">📦</div>
+          <div class="product-info">
+            <div class="product-title">Предмет 2</div>
+            <div class="product-price">12 500 ₽</div>
+            <div class="product-rating">★★★★☆ (4.2)</div>
+            <div class="product-delivery">Бесплатная доставка</div>
+          </div>
+        </div>
+
+        <div
+          class="product-card"
+          data-category="Дом"
+          data-rating="3"
+          data-price="8300"
+          data-delivery="pickup"
+        >
+          <div class="product-image">📦</div>
+          <div class="product-info">
+            <div class="product-title">Предмет 3</div>
+            <div class="product-price">8 300 ₽</div>
+            <div class="product-rating">★★★☆☆ (3.5)</div>
+            <div class="product-delivery">Самовывоз</div>
+          </div>
+        </div>
+
+        <div
+          class="product-card"
+          data-category="Электроника"
+          data-rating="5"
+          data-price="22000"
+          data-delivery="today"
+        >
+          <div class="product-image">📦</div>
+          <div class="product-info">
+            <div class="product-title">Предмет 4</div>
+            <div class="product-price">22 000 ₽</div>
+            <div class="product-rating">★★★★★ (5.0)</div>
+            <div class="product-delivery">Доставка сегодня</div>
+          </div>
+        </div>
+
+        <div
+          class="product-card"
+          data-category="Одежда"
+          data-rating="2"
+          data-price="3200"
+          data-delivery="free pickup"
+        >
+          <div class="product-image">📦</div>
+          <div class="product-info">
+            <div class="product-title">Предмет 5</div>
+            <div class="product-price">3 200 ₽</div>
+            <div class="product-rating">★★☆☆☆ (2.1)</div>
+            <div class="product-delivery">Бесплатно или самовывоз</div>
+          </div>
+        </div>
+
+        <div
+          class="product-card"
+          data-category="Дом"
+          data-rating="4"
+          data-price="15750"
+          data-delivery="today free pickup"
+        >
+          <div class="product-image">📦</div>
+          <div class="product-info">
+            <div class="product-title">Предмет 6</div>
+            <div class="product-price">15 750 ₽</div>
+            <div class="product-rating">★★★★☆ (4.7)</div>
+            <div class="product-delivery">Сегодня · Бесплатно · Самовывоз</div>
+          </div>
+        </div>
       </main>
     </div>
+
+    <script src="app.js"></script>
   </body>
 </html>

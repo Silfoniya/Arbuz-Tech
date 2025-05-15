@@ -101,168 +101,229 @@ body {
       text-align: center;
     }
   }
-  body {
+ 
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
     margin: 0;
-    font-family: sans-serif;
-    background-color: #f9f9f9;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #eee;
-    padding: 10px 20px;
-  }
-  
-  .logo {
-    font-size: 24px;
-    color: green;
-    font-weight: bold;
-  }
-  
-  .search-icon {
-    font-weight: bold;
-  }
-  
-  .icons {
-    font-size: 20px;
-  }
-  
-  .search-bar {
-    background: #4be488;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-bar input {
-    flex: 1;
-    margin-left: 10px;
-    padding: 5px;
-  }
-  
-  .container {
-    display: flex;
     padding: 20px;
-  }
-  
-  .filters {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.filters {
     width: 250px;
-    background: white;
-    padding: 15px;
+    background-color: white;
+    padding: 20px;
     border-radius: 8px;
-    margin-right: 20px;
-  }
-  
-  .filters button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  .filters label {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.products {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    height: 180px;
+    background-color: #f0f0f0;
     display: flex;
     align-items: center;
-    gap: 8px; /* Расстояние между чекбоксом и текстом */
-  }
+    justify-content: center;
+    font-size: 50px;
+    flex-shrink: 0;
+}
 
-  .filters input[type="checkbox"] {
-    margin: 0; /* Убираем лишние отступы */
-  }
-  
-  .apply {
-    background-color: #4be488;
-    cursor: pointer;
-  }
-  
-  .reset {
-    background-color: #60c282;
-    color: white;
-    cursor: pointer;
+.product-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-  }
-  
-  .products {
+.product-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.product-price {
+    color: #e53935;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    color: #FFA41C;
+    font-size: 14px;
+}
+
+.product-delivery {
+    font-size: 12px;
+    color: #666;
+    margin-top: auto;
+}
+
+.filter-section {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.filter-section:last-child {
+    border-bottom: none;
+}
+
+.filter-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.price-range {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.price-input {
     flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100px;
+}
+
+.price-slider {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.progress {
+    height: 4px;
+    background: #4CAF50;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+}
+
+.price-slider input[type="range"] {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    top: 0;
+}
+
+.price-slider input[type="range"]::-webkit-slider-thumb {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background: #4CAF50;
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+
+.filter-options {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-  
-  .product {
+}
+
+.option {
     display: flex;
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
     align-items: center;
-  }
-  
-  .product img {
-    width: 100px;
-    margin-right: 20px;
-  }
-  
-  .product h3 {
-    margin: 0;
-  }
-  
-  .product p {
-    margin: 5px 0 0;
-  }
-/* ---- Адаптация под планшеты и телефоны ---- */
-@media (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-  }
+    gap: 8px;
+}
 
-  .filters {
+.option input {
+    accent-color: #4CAF50;
+}
+
+.option label {
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.apply-filters {
     width: 100%;
-    margin-bottom: 20px;
-  }
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-  .products {
+.reset-filters {
     width: 100%;
-  }
-
-  .search-bar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .search-bar input {
-    width: 100%;
+    padding: 10px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
     margin-top: 10px;
-  }
 }
 
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .logo, .search-icon, .icons {
-    margin-bottom: 10px;
-  }
-
-  .product {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .product img {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .filters button {
-    font-size: 16px;
-  }
+.error-message {
+    color: #f44336;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .filters {
+        width: 100%;
+    }
+}
+
+
 .special-gothic-expanded-one-regular {
   font-family: "Special Gothic Expanded One", sans-serif;
   font-weight: 400;
