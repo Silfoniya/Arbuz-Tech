@@ -1,61 +1,96 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ARBUZ.Tech — Главная</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARBUZ.Tech</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <header>
-      <div class="logo" onclick="location.href='main.html'">
-        <img src="images/image.png" alt="Логотип" />
-        <h1>ARBUZ.Tech</h1>
-      </div>
-      <div class="icons">
-        <img src="images/751463 1.png" alt="Поиск" />
-        <span>Поиск</span>
-        <img src="images/Moon.png" alt="Тема" />
-        <div onclick="location.href='shopping_cart.html'">
-          <img src="images/image 9.png" alt="Корзина" />
+        <div class="logo" data-redirect="main.html">
+            <img src="assets/arbuz_logo.png" alt="Logo" class="logo-img">
+            <h1>ARBUZ.Tech</h1>
         </div>
-      </div>
+        <div class="icons">
+            <div class="search-bar">
+                <img src="assets/magnifying_glass.png" alt="Search" class="search-icon">
+                <input type="text" placeholder="Поиск">
+            </div>
+            <img src="assets/cart.png" alt="Cart" class="cart-icon" data-redirect="shopping_cart.html">
+        </div>
     </header>
 
-    <main>
-      <section class="category-section">
-        <div class="category" onclick="location.href='products.html'">
-          <img src="images/image 2.png" alt="Девайсы" />
-          <p>девайсы</p>
+    <div class="category-section">
+        <div class="category" data-category="девайсы" data-redirect="products.html">
+            <img src="assets/headset_mouse.png" alt="Девайсы" class="category-img">
+            <p>девайсы</p>
         </div>
-        <div class="category" onclick="location.href='products.html'">
-          <img src="images/image 3.png" alt="Бытовая техника" />
-          <p>бытовая техника</p>
+        <div class="category" data-category="бытовая техника" data-redirect="products.html">
+            <img src="assets/appliances.png" alt="Бытовая техника" class="category-img">
+            <p>бытовая техника</p>
         </div>
-        <div class="category" onclick="location.href='products.html'">
-          <img src="images/image 4.png" alt="Комплектующие" />
-          <p>комплектующие</p>
+        <div class="category" data-category="комплектующие" data-redirect="products.html">
+            <img src="assets/graphics_card.png" alt="Комплектующие" class="category-img">
+            <p>комплектующие</p>
         </div>
-        <div class="category" onclick="location.href='products.html'">
-          <img src="images/image (1).png" alt="Готовые сборки" />
-          <p>готовые сборки</p>
+        <div class="category" data-category="готовые сборки" data-redirect="products.html">
+            <img src="assets/custom_pc.png" alt="Готовые сборки" class="category-img">
+            <p>готовые сборки</p>
         </div>
-      </section>
-    </main>
+    </div>
 
     <footer>
-      <img src="images/image (2).png" alt="Сбер" />
-      <div>
-        Филиалы: ул.Ленина 21/3 — ул.Весенняя 34<br />
-        Время работы: пн-вс 8:00 – 21:00<br />
-        Телефон поддержки: +7 993 xxx xx xx
-      </div>
-      <div>
-        О компании:
-        <a href="https://www.Arbuz-Tech.ru/about"
-          >https://www.Arbuz-Tech.ru/about</a
-        >
-      </div>
+        <div>
+            <p>Филиалы: ул.Ленина 21/3 — ул.Весенняя 34</p>
+            <p>Время работы: пн-вс 8:00 – 21:00</p>
+            <p>Телефон поддержки: +7 993 xxx xx xx</p>
+        </div>
+        <div>
+            <p>О компании: <a href="https://www.Arbuz-Tech.ru/about">https://www.Arbuz-Tech.ru/about</a></p>
+        </div>
+        <img src="assets/arbuz_logo.png" alt="Logo" class="footer-img">
     </footer>
-  </body>
+
+    <script src="app.js"></script>
+</body>
 </html>
