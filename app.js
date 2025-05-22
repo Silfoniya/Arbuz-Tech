@@ -1,122 +1,3 @@
-const items = [
-    {
-        id:1,
-        name:"Иркутский холодильник",
-        price:13500,
-        quantity:11,
-        rating:0,
-        producer:"нн подвал",
-        img:""
-    },
-    {
-        id:2,
-        name:"Смартфон VIVO",
-        price:9800,
-        quantity:42,
-        rating:2,
-        producer:"VIVO",
-        img:""
-    },
-    {
-        id:3,
-        name:"Смартфон POCO C4",
-        price:32999,
-        quantity:8,
-        rating:4,
-        producer:"POCO",
-        img:""
-    },
-    {
-        id:4,
-        name:"Смартфон Xiaomi E12 Pro Mini Plus",
-        price:11100,
-        quantity:5,
-        rating:5,
-        producer:"Xiaomi",
-        img:""
-    },
-    {
-        id:5,
-        name:"Процессор Intel Core i5",
-        price:12000,
-        quantity:21,
-        rating:5,
-        producer:"Intel",
-        img:""
-    },
-    {
-        id:6,
-        name:"Процессор Ryzen 7",
-        price:13500,
-        quantity:54,
-        rating:5,
-        producer:"AMD",
-        img:""
-    },
-    {
-        id:7,
-        name:"Видеокарта NVidia RTX 4060 Ti",
-        price:53999,
-        quantity:2,
-        rating:5,
-        producer:"NVidia",
-        img:""
-    },
-        {
-        id:8,
-        name:"Видеокарта Radeon RX 8600",
-        price:53999,
-        quantity:1,
-        rating:5,
-        producer:"Radeon",
-        img:""
-    },
-    {
-        id:9,
-        name:"Видеокарта Radeon RX 7600",
-        price:36000,
-        quantity:0,
-        rating:5,
-        producer:"Radeon",
-        img:""
-    },
-    {
-        id:10,
-        name:"утюг",
-        price:9999,
-        quantity:100,
-        rating:5,
-        producer:"нету они сами у нас заспавнились",
-        img:""
-    },
-    {
-        id:11,
-        name:"сборка ПК - 'дешевая'",
-        price:49999,
-        quantity:3,
-        rating:5,
-        producer:"МЫ",
-        img:""
-    },
-    {
-        id:12,
-        name:"сборка ПК - 'подороже'",
-        price:499999,
-        quantity:1,
-        rating:5,
-        producer:"МЫ",
-        img:""
-    },
-{
-        id:13,
-        name:"Электросамовар",
-        price:5999,
-        quantity:9,
-        rating:5,
-        producer:"Наши программисты",
-        img:""
-    }
-]
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы управления
     const rangeMin = document.getElementById('range-min');
@@ -203,49 +84,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Применение фильтров
-    applyBtn.addEventListener('click', function() {
-        if (!hasActiveFilters()) {
-            if (filtersApplied) {
-                errorMessage.textContent = 'Фильтры не выбраны';
-                errorMessage.style.display = 'block';
-            }
-            return;
-        }
-        
-        errorMessage.style.display = 'none';
-        filtersApplied = true;
-        
-        const minPriceValue = minPrice.value === '' ? 0 : parseInt(minPrice.value);
-        const maxPriceValue = maxPrice.value === '' ? 10000 : parseInt(maxPrice.value);
-        
-        const selectedCategories = Array.from(
-            document.querySelectorAll('input[name="category"]:checked')
-        ).map(el => el.value);
-        
-        const selectedRatings = Array.from(
-            document.querySelectorAll('input[name="rating"]:checked')
-        ).map(el => parseInt(el.value));
-        
-        const selectedDeliveries = Array.from(
-            document.querySelectorAll('input[name="delivery"]:checked')
-        ).map(el => el.value);
-        
-        document.querySelectorAll('.product-card').forEach(card => {
-            const price = parseInt(card.dataset.price);
-            const category = card.dataset.category;
-            const rating = Math.floor(parseFloat(
-                card.querySelector('.product-rating').textContent.match(/\(([0-9.]+)\)/)[1]
-            ));
-            const delivery = card.dataset.delivery.split(' ');
-            
-            const priceMatch = price >= minPriceValue && price <= maxPriceValue;
-            const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(category);
-            const ratingMatch = selectedRatings.length === 0 || selectedRatings.some(r => rating >= r);
-            const deliveryMatch = selectedDeliveries.length === 0 || selectedDeliveries.some(d => delivery.includes(d));
-            
-            card.style.display = (priceMatch && categoryMatch && ratingMatch && deliveryMatch) ? 'block' : 'none';
-        });
-    });
+    applyBtn.addEventListener('click', function () {
+  if (!hasActiveFilters()) {
+    if (filtersApplied) {
+      errorMessage.textContent = 'Фильтры не выбраны';
+      errorMessage.style.display = 'block';
+    }
+    return;
+  }
+
+  errorMessage.style.display = 'none';
+  filtersApplied = true;
+
+  const minPriceValue = minPrice.value === '' ? 0 : parseInt(minPrice.value);
+  const maxPriceValue = maxPrice.value === '' ? 10000 : parseInt(maxPrice.value);
+
+  const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value);
+  const selectedRatings = Array.from(document.querySelectorAll('input[name="rating"]:checked')).map(el => parseInt(el.value));
+  const selectedDeliveries = Array.from(document.querySelectorAll('input[name="delivery"]:checked')).map(el => el.value);
+
+  document.querySelectorAll('.product-card').forEach(card => {
+    const price = parseInt(card.dataset.price);
+    const category = card.dataset.category;
+    const delivery = card.dataset.delivery.split(' ');
+
+    let rating = 0;
+    const ratingElement = card.querySelector('.product-rating');
+    if (ratingElement) {
+      const match = ratingElement.textContent.match(/\((\d+(?:\.\d+)?)\)/);
+      if (match) {
+        rating = Math.floor(parseFloat(match[1]));
+      }
+    }
+
+    const priceMatch = price >= minPriceValue && price <= maxPriceValue;
+    const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(category);
+    const ratingMatch = selectedRatings.length === 0 || selectedRatings.some(r => rating >= r);
+    const deliveryMatch = selectedDeliveries.length === 0 || selectedDeliveries.some(d => delivery.includes(d));
+
+    card.style.display = (priceMatch && categoryMatch && ratingMatch && deliveryMatch) ? 'block' : 'none';
+  });
+});
+
 
     // Сброс фильтров
     resetBtn.addEventListener('click', function() {
@@ -262,4 +142,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Инициализация
     initSliders();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const productCard = button.closest('.product-card');
+      const productId = productCard.dataset.id;
+      const productTitle = productCard.dataset.title;
+      const productPrice = parseFloat(productCard.dataset.price);
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      const existingProduct = cart.find(item => item.id === productId);
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push({
+          id: productId,
+          title: productTitle,
+          price: productPrice,
+          quantity: 1,
+        });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      showNotification('Товар добавлен в корзину!');
+    });
+  });
+
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.classList.add('cart-notification');
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 2000);
+  }
 });

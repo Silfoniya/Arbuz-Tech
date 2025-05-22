@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>ARBUZ.Tech</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="header.css" />
   </head>
   <body>
     <header>
@@ -23,9 +24,7 @@
 
     <div class="container">
       <aside class="filters">
-        <div class="filter-header">
-          <h2>Фильтры</h2>
-        </div>
+        <div class="filter-header"><h2>Фильтры</h2></div>
 
         <div class="filter-section">
           <div class="filter-title">Цена</div>
@@ -35,16 +34,12 @@
               class="price-input"
               id="min-price"
               placeholder="От"
-              min="0"
-              max="10000"
             />
             <input
               type="number"
               class="price-input"
               id="max-price"
               placeholder="До"
-              min="0"
-              max="10000"
             />
           </div>
           <div class="price-slider">
@@ -105,16 +100,13 @@
           <div class="filter-title">Рейтинг</div>
           <div class="filter-options">
             <div class="option">
-              <input type="checkbox" id="rating5" name="rating" value="5" />
-              <label for="rating5">★★★★★ (5)</label>
+              <input type="checkbox" name="rating" value="5" /> ★★★★★ (5)
             </div>
             <div class="option">
-              <input type="checkbox" id="rating4" name="rating" value="4" />
-              <label for="rating4">★★★★☆ (4+)</label>
+              <input type="checkbox" name="rating" value="4" /> ★★★★☆ (4+)
             </div>
             <div class="option">
-              <input type="checkbox" id="rating3" name="rating" value="3" />
-              <label for="rating3">★★★☆☆ (3+)</label>
+              <input type="checkbox" name="rating" value="3" /> ★★★☆☆ (3+)
             </div>
           </div>
         </div>
@@ -123,31 +115,13 @@
           <div class="filter-title">Доставка</div>
           <div class="filter-options">
             <div class="option">
-              <input
-                type="checkbox"
-                id="delivery1"
-                name="delivery"
-                value="today"
-              />
-              <label for="delivery1">Сегодня</label>
+              <input type="checkbox" name="delivery" value="today" /> Сегодня
             </div>
             <div class="option">
-              <input
-                type="checkbox"
-                id="delivery2"
-                name="delivery"
-                value="free"
-              />
-              <label for="delivery2">Бесплатная</label>
+              <input type="checkbox" name="delivery" value="free" /> Бесплатная
             </div>
             <div class="option">
-              <input
-                type="checkbox"
-                id="delivery3"
-                name="delivery"
-                value="pickup"
-              />
-              <label for="delivery3">Самовывоз</label>
+              <input type="checkbox" name="delivery" value="pickup" /> Самовывоз
             </div>
           </div>
         </div>
@@ -160,97 +134,115 @@
       <main class="products">
         <div
           class="product-card"
+          data-id="1"
+          data-title="Беспроводные наушники"
           data-category="Электроника"
           data-rating="5"
-          data-price="5000"
+          data-price="4990"
           data-delivery="today free"
         >
-          <div class="product-image">📦</div>
+          <div class="product-image">🎧</div>
           <div class="product-info">
-            <div class="product-title">Предмет 1</div>
-            <div class="product-price">5 000 ₽</div>
+            <div class="product-title">Беспроводные наушники</div>
+            <div class="product-price">4 990 ₽</div>
             <div class="product-rating">★★★★★ (5.0)</div>
+            <button class="add-to-cart-btn">Добавить в корзину</button>
             <div class="product-delivery">Доставка сегодня · Бесплатно</div>
           </div>
         </div>
 
         <div
           class="product-card"
-          data-category="Одежда"
+          data-id="2"
+          data-title="Смарт-часы"
+          data-category="Электроника"
           data-rating="4"
-          data-price="12500"
-          data-delivery="free"
+          data-price="7990"
+          data-delivery="tomorrow free"
         >
-          <div class="product-image">📦</div>
+          <div class="product-image">⌚</div>
           <div class="product-info">
-            <div class="product-title">Предмет 2</div>
-            <div class="product-price">12 500 ₽</div>
-            <div class="product-rating">★★★★☆ (4.2)</div>
-            <div class="product-delivery">Бесплатная доставка</div>
+            <div class="product-title">Смарт-часы</div>
+            <div class="product-price">7 990 ₽</div>
+            <div class="product-rating">★★★★☆ (4.0)</div>
+            <button class="add-to-cart-btn">Добавить в корзину</button>
+            <div class="product-delivery">Доставка завтра · Бесплатно</div>
           </div>
         </div>
 
         <div
           class="product-card"
+          data-id="3"
+          data-title="Электрическая щётка"
           data-category="Дом"
-          data-rating="3"
-          data-price="8300"
-          data-delivery="pickup"
+          data-rating="4"
+          data-price="2590"
+          data-delivery="today free"
         >
-          <div class="product-image">📦</div>
+          <div class="product-image">🪥</div>
           <div class="product-info">
-            <div class="product-title">Предмет 3</div>
-            <div class="product-price">8 300 ₽</div>
-            <div class="product-rating">★★★☆☆ (3.5)</div>
-            <div class="product-delivery">Самовывоз</div>
+            <div class="product-title">Электрическая щётка</div>
+            <div class="product-price">2 590 ₽</div>
+            <div class="product-rating">★★★★☆ (4.0)</div>
+            <button class="add-to-cart-btn">Добавить в корзину</button>
+            <div class="product-delivery">Доставка сегодня · Бесплатно</div>
           </div>
         </div>
 
         <div
           class="product-card"
+          data-id="4"
+          data-title="Игровая мышь"
           data-category="Электроника"
           data-rating="5"
-          data-price="22000"
-          data-delivery="today"
+          data-price="3490"
+          data-delivery="today free"
         >
-          <div class="product-image">📦</div>
+          <div class="product-image">🖱️</div>
           <div class="product-info">
-            <div class="product-title">Предмет 4</div>
-            <div class="product-price">22 000 ₽</div>
+            <div class="product-title">Игровая мышь</div>
+            <div class="product-price">3 490 ₽</div>
             <div class="product-rating">★★★★★ (5.0)</div>
-            <div class="product-delivery">Доставка сегодня</div>
+            <button class="add-to-cart-btn">Добавить в корзину</button>
+            <div class="product-delivery">Доставка сегодня · Бесплатно</div>
           </div>
         </div>
 
         <div
           class="product-card"
-          data-category="Одежда"
-          data-rating="2"
-          data-price="3200"
-          data-delivery="free pickup"
+          data-id="5"
+          data-title="Флешка 128 ГБ"
+          data-category="Электроника"
+          data-rating="3"
+          data-price="1190"
+          data-delivery="tomorrow free"
         >
-          <div class="product-image">📦</div>
+          <div class="product-image">💾</div>
           <div class="product-info">
-            <div class="product-title">Предмет 5</div>
-            <div class="product-price">3 200 ₽</div>
-            <div class="product-rating">★★☆☆☆ (2.1)</div>
-            <div class="product-delivery">Бесплатно или самовывоз</div>
+            <div class="product-title">Флешка 128 ГБ</div>
+            <div class="product-price">1 190 ₽</div>
+            <div class="product-rating">★★★☆☆ (3.0)</div>
+            <button class="add-to-cart-btn">Добавить в корзину</button>
+            <div class="product-delivery">Доставка завтра · Бесплатно</div>
           </div>
         </div>
 
         <div
           class="product-card"
-          data-category="Дом"
-          data-rating="4"
-          data-price="15750"
-          data-delivery="today free pickup"
+          data-id="6"
+          data-title="Монитор 24”"
+          data-category="Электроника"
+          data-rating="5"
+          data-price="15990"
+          data-delivery="today free"
         >
-          <div class="product-image">📦</div>
+          <div class="product-image">🖥️</div>
           <div class="product-info">
-            <div class="product-title">Предмет 6</div>
-            <div class="product-price">15 750 ₽</div>
-            <div class="product-rating">★★★★☆ (4.7)</div>
-            <div class="product-delivery">Сегодня · Бесплатно · Самовывоз</div>
+            <div class="product-title">Монитор 24”</div>
+            <div class="product-price">15 990 ₽</div>
+            <div class="product-rating">★★★★★ (5.0)</div>
+            <button class="add-to-cart-btn">Добавить в корзину</button>
+            <div class="product-delivery">Доставка сегодня · Бесплатно</div>
           </div>
         </div>
       </main>
